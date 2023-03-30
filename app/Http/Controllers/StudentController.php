@@ -3,8 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
-    //
+    public function index() {
+        $students = Student::get();
+        // return $students;
+        return view('student-list', compact('students'));
+    }
+
+    public function addStudent() {
+        return view('add-student');
+    }
+
+     public function saveStudent(Request $request) {
+        // Request validation
+        $request->validate([
+            'ncin' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+
+        $ncin = $request->ncin;
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $address = $request->address;
+
+        $newStudent = new Student();
+        $newStudent->ncin = $ncin;
+        $newStudent->name = $name;
+        $newStudent->email = $email;
+        $newStudent->phone = $phone;
+        $newStudent->address = $address;
+
+        $newStudent->save();
+
+        return redirect()->back()->with('success', 'Student Added Successfully');
+    }
 }
