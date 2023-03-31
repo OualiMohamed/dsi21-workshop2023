@@ -12,17 +12,17 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-12">
-                <h2>Add student</h2>
+                <h2>Edit student</h2>
                 @if (Session::has('success'))
                     <div class="alert alert-success" role="alert">
                         {{ Session::get('success') }}
                     </div>
                 @endif
-                <form action="{{ url('save-student') }}" method="post">
+                <form action="{{ url('update-student/'.$student->id) }}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="ncin" class="form-label">NCIN</label>
-                        <input type="text" class="form-control" value="{{ old('ncin') }}" name="ncin" id="ncin" placeholder="Enter NCIN">
+                        <input type="text" class="form-control" value="{{ $student->ncin }}" name="ncin" id="ncin" placeholder="Enter NCIN">
                         @error('ncin')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" value="{{ old('name') }}" name="name" id="name" placeholder="Enter Name">
+                        <input type="text" class="form-control" value="{{ $student->name }}" name="name" id="name" placeholder="Enter Name">
                         @error('name')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
@@ -40,7 +40,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="text" class="form-control" value="{{ old('email') }}" name="email" id="email" placeholder="Enter email">
+                        <input type="text" class="form-control" value="{{ $student->email }}" name="email" id="email" placeholder="Enter email">
                         @error('email')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
@@ -49,7 +49,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" id="phone" placeholder="Enter phone">
+                        <input type="text" class="form-control" value="{{ $student->phone }}" name="phone" id="phone" placeholder="Enter phone">
                         @error('phone')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
@@ -58,7 +58,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <textarea class="form-control" name="address" id="Address" rows="3" placeholder="Enter address">{{ old('address') }}</textarea>
+                        <textarea class="form-control" name="address" id="Address" placeholder="Enter address">{{ $student->address }}</textarea>
                         @error('address')
                             <div class="alert alert-danger" role="alert">
                                 {{ $message }}
