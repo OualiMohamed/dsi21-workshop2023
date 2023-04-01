@@ -41,8 +41,8 @@
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->address }}</td>
                                 <td>
-                                    <a href="{{ url('edit-student/'.$student->id) }}"><i class="bi bi-pencil-square text-success"></i></a>
-                                    <a href="{{ url('delete-student/'.$student->id) }}"><i class="bi bi-trash text-danger"></i></a>
+                                    <a onclick="return confirm('modifier?')" href="{{ url('edit-student/'.$student->id) }}"><i class="bi bi-pencil-square text-success"></i></a>
+                                    <a onclick="return confirm('supprimer?')" href="{{ url('delete-student/'.$student->id) }}"><i class="bi bi-trash text-danger"></i></a>
                                 </td>
                             </tr>
                         @endforeach
